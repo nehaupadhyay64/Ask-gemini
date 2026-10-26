@@ -13,7 +13,7 @@ submitBtn.disabled =true;
 answer.textContent = "Thinking....";
 
 try{
-    const response = await fetch("http://localhost:5000/ask",{
+    const response = await fetch("https://ask-gemini-8ed6.onrender.com/ask",{
         method:"POST",
         headers:{
             "Content-Type": "application/json"
