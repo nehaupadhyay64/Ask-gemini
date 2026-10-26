@@ -1,0 +1,837 @@
+
+/* =========================================
+   ASK GEMINI — PREMIUM AI ASSISTANT
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #080b1c;
+    --surface: rgba(22, 26, 55, 0.78);
+    --surface-light: rgba(255, 255, 255, 0.045);
+    --border: rgba(190, 181, 255, 0.15);
+    --text: #f5f5ff;
+    --muted: #a2a8c6;
+    --purple: #8970ff;
+    --pink: #c16aff;
+    --blue: #64c8ff;
+    --radius: 22px;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 50% 0%, #1b1740 0%, transparent 55%),
+        linear-gradient(135deg, #080b1c, #111331 55%, #0a0d21);
+    overflow-x: hidden;
+}
+
+/* =========================================
+   ANIMATED BACKGROUND
+   ========================================= */
+
+.background-effects {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(85px);
+    opacity: 0.27;
+    will-change: transform;
+}
+
+.orb-one {
+    width: 360px;
+    height: 360px;
+    background: #7646ff;
+    top: -120px;
+    left: -100px;
+    animation: floatOne 13s ease-in-out infinite alternate;
+}
+
+.orb-two {
+    width: 330px;
+    height: 330px;
+    background: #174ee9;
+    right: -100px;
+    top: 25%;
+    animation: floatTwo 16s ease-in-out infinite alternate;
+}
+
+.orb-three {
+    width: 280px;
+    height: 280px;
+    background: #b13bff;
+    left: 35%;
+    bottom: -160px;
+    animation: floatThree 12s ease-in-out infinite alternate;
+}
+
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.12;
+    background-image:
+        linear-gradient(rgba(164, 156, 255, 0.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(164, 156, 255, 0.09) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+@keyframes floatOne {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(90px, 120px) scale(1.15); }
+}
+
+@keyframes floatTwo {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-100px, 90px) scale(1.12); }
+}
+
+@keyframes floatThree {
+    from { transform: translateY(0); }
+    to { transform: translate(80px, -90px) scale(1.2); }
+}
+
+/* =========================================
+   PAGE LAYOUT & MAIN CONTAINER
+   ========================================= */
+
+.page-wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 55px 24px;
+}
+
+.container {
+    position: relative;
+    width: min(100%, 820px);
+    padding: 42px;
+    overflow: hidden;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+
+    -webkit-backdrop-filter: blur(28px);
+    backdrop-filter: blur(28px);
+
+    box-shadow:
+        0 35px 100px rgba(0, 0, 0, 0.42),
+        0 0 65px rgba(119, 83, 255, 0.09),
+        inset 0 1px 0 rgba(255, 255, 255, 0.09);
+
+    animation: cardEntrance 0.85s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    width: 76%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #a58cff,
+        #6bcaff,
+        transparent
+    );
+    opacity: 0.8;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.975);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin-bottom: 30px;
+}
+
+.logo-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    font-size: 30px;
+    color: white;
+    border-radius: 18px;
+    background: linear-gradient(140deg, #8271ff, #bd5cff);
+    box-shadow: 0 8px 30px rgba(137, 112, 255, 0.35);
+    animation: logoGlow 4s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+    0%, 100% { box-shadow: 0 8px 25px rgba(137, 112, 255, .25); }
+    50% { box-shadow: 0 8px 35px rgba(193, 106, 255, .5); }
+}
+
+.header-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.eyebrow,
+.answer-overline {
+    display: block;
+    color: #a9a0ff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 7px;
+}
+
+h1 {
+    font-size: clamp(27px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+}
+
+.gradient-text {
+    color: #a89aff;
+    background: linear-gradient(90deg, #9b8aff, #d17aff, #79d4ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.emoji {
+    display: inline-block;
+    font-size: 25px;
+    animation: robotWave 3s ease-in-out infinite;
+    transform-origin: 70% 70%;
+}
+
+@keyframes robotWave {
+    0%, 85%, 100% { transform: rotate(0); }
+    90% { transform: rotate(12deg); }
+    95% { transform: rotate(-10deg); }
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 9px;
+    line-height: 1.6;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 9px 12px;
+    color: #d9d5ff;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid rgba(137, 112, 255, 0.22);
+    border-radius: 50px;
+    background: rgba(137, 112, 255, 0.09);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #64efb0;
+    box-shadow: 0 0 12px rgba(100, 239, 176, 0.7);
+}
+
+.section-divider {
+    height: 1px;
+    margin-bottom: 32px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(180, 169, 255, 0.2),
+        transparent
+    );
+}
+
+/* =========================================
+   QUESTION INPUT
+   ========================================= */
+
+.question-section {
+    margin-bottom: 30px;
+}
+
+.field-label {
+    display: block;
+    margin-bottom: 12px;
+    color: #d5d1ff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 66px;
+    padding: 0 19px;
+
+    background: rgba(8, 11, 30, 0.58);
+    border: 1px solid rgba(175, 165, 255, 0.19);
+    border-radius: 15px;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.input-wrapper:focus-within {
+    border-color: rgba(161, 132, 255, 0.8);
+    background: rgba(12, 14, 38, 0.85);
+    box-shadow:
+        0 0 0 4px rgba(137, 112, 255, 0.09),
+        0 0 28px rgba(137, 112, 255, 0.12);
+    transform: translateY(-1px);
+}
+
+.input-icon {
+    color: #a99aff;
+    font-size: 24px;
+}
+
+#question {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    height: 62px;
+    color: #fff;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+#question::placeholder {
+    color: #777f9f;
+    transition: color 0.25s ease;
+}
+
+#question:focus::placeholder {
+    color: #9c9bbd;
+}
+
+.input-shortcut {
+    display: grid;
+    place-items: center;
+    width: 27px;
+    height: 27px;
+    flex-shrink: 0;
+    color: #aaa2df;
+    font-size: 16px;
+    border: 1px solid rgba(175, 165, 255, 0.17);
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.input-hint {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 12px;
+    color: #9299b9;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.input-hint span {
+    color: #b39aff;
+}
+
+/* =========================================
+   SUBMIT BUTTON
+   ========================================= */
+
+.submit-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    min-height: 58px;
+    margin-top: 23px;
+    padding: 15px 20px;
+
+    color: white;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+
+    background: linear-gradient(105deg, #705bfa, #9255fa 55%, #b75af2);
+    background-size: 180% 100%;
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 13px;
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px rgba(123, 84, 250, 0.24);
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-position 0.4s ease;
+}
+
+.submit-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: -120%;
+    width: 60%;
+    background: linear-gradient(
+        100deg,
+        transparent,
+        rgba(255, 255, 255, 0.22),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.65s ease;
+}
+
+.submit-btn:hover::before {
+    left: 150%;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    background-position: 100% 0;
+    box-shadow:
+        0 12px 35px rgba(123, 84, 250, 0.4),
+        0 0 22px rgba(174, 105, 255, 0.12);
+}
+
+.submit-btn:active {
+    transform: translateY(0) scale(0.99);
+}
+
+.submit-btn:focus-visible,
+.copy-btn:focus-visible {
+    outline: 2px solid #bdaaff;
+    outline-offset: 4px;
+}
+
+.btn-arrow {
+    position: absolute;
+    right: 19px;
+    font-size: 20px;
+    transition: transform 0.25s ease;
+}
+
+.submit-btn:hover .btn-arrow {
+    transform: translate(3px, -3px);
+}
+
+.btn-loader {
+    display: none;
+    width: 17px;
+    height: 17px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+.submit-btn.loading {
+    cursor: wait;
+    opacity: 0.88;
+    pointer-events: none;
+}
+
+.submit-btn.loading .btn-loader {
+    display: inline-block;
+}
+
+.submit-btn.loading .btn-arrow {
+    display: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* =========================================
+   ANSWER CARD
+   ========================================= */
+
+.answer {
+    padding: 24px;
+    border: 1px solid rgba(174, 164, 255, 0.17);
+    border-radius: 19px;
+    background:
+        linear-gradient(135deg, rgba(130, 105, 255, 0.075), transparent 70%),
+        rgba(9, 12, 31, 0.48);
+
+    animation: answerEntrance 0.6s ease both;
+}
+
+@keyframes answerEntrance {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.answer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.answer-title-group {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.answer-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 43px;
+    height: 43px;
+    color: #d5caff;
+    font-size: 23px;
+    border: 1px solid rgba(175, 145, 255, 0.25);
+    border-radius: 13px;
+    background: linear-gradient(
+        135deg,
+        rgba(128, 103, 255, 0.2),
+        rgba(190, 96, 255, 0.12)
+    );
+}
+
+.answer-overline {
+    margin-bottom: 5px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+.answer h2 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.copy-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    flex-shrink: 0;
+    padding: 9px 12px;
+
+    color: #c7c3e9;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    border: 1px solid rgba(175, 165, 255, 0.19);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.035);
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.copy-btn:hover {
+    color: white;
+    border-color: rgba(166, 140, 255, 0.55);
+    background: rgba(137, 112, 255, 0.13);
+    transform: translateY(-1px);
+}
+
+.copy-btn.copied {
+    color: #7cf2b5;
+    border-color: rgba(124, 242, 181, 0.4);
+    background: rgba(124, 242, 181, 0.07);
+}
+
+.copy-btn span:first-child {
+    font-size: 17px;
+}
+
+.answer-content {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: 15px;
+    min-height: 140px;
+    padding: 21px;
+    border: 1px solid rgba(175, 165, 255, 0.09);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.answer-accent {
+    width: 3px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #9c85ff, #64c8ff);
+    opacity: 0.8;
+}
+
+#answer {
+    flex: 1;
+    align-self: center;
+    color: #e0e3f6;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.answer-footer {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 17px;
+    color: #7f87a9;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.footer-sparkle {
+    color: #a99aff;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.app-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 28px;
+    color: #858cac;
+    font-size: 10px;
+    letter-spacing: 0.2px;
+}
+
+.heart {
+    color: #cf7aff;
+}
+
+.footer-separator {
+    color: #5e6387;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (min-width: 1200px) {
+    .container {
+        width: min(100%, 850px);
+        padding: 46px;
+    }
+
+    .answer-content {
+        min-height: 155px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-wrapper {
+        padding: 25px 14px;
+        align-items: flex-start;
+    }
+
+    .container {
+        margin: auto 0;
+        padding: 24px 19px;
+        border-radius: 22px;
+    }
+
+    .app-header {
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 23px;
+    }
+
+    .logo-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 24px;
+        border-radius: 14px;
+    }
+
+    .header-text {
+        flex-basis: calc(100% - 60px);
+    }
+
+    h1 {
+        font-size: 29px;
+    }
+
+    .eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.3px;
+    }
+
+    .status-badge {
+        margin-left: 58px;
+        padding: 7px 10px;
+    }
+
+    .section-divider {
+        margin-bottom: 25px;
+    }
+
+    .input-wrapper {
+        min-height: 59px;
+        padding: 0 13px;
+        gap: 9px;
+    }
+
+    #question {
+        height: 57px;
+        font-size: 13px;
+    }
+
+    .input-shortcut {
+        display: none;
+    }
+
+    .submit-btn {
+        min-height: 54px;
+    }
+
+    .answer {
+        padding: 17px;
+    }
+
+    .answer h2 {
+        font-size: 14px;
+    }
+
+    .answer-icon {
+        width: 37px;
+        height: 37px;
+    }
+
+    .answer-content {
+        min-height: 120px;
+        padding: 15px;
+        gap: 11px;
+    }
+
+    #answer {
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
+    .copy-btn {
+        padding: 8px;
+    }
+
+    .copy-btn span:first-child {
+        font-size: 16px;
+    }
+
+    .app-footer {
+        gap: 6px;
+        font-size: 9px;
+    }
+
+    .orb-one {
+        width: 240px;
+        height: 240px;
+    }
+
+    .orb-two {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 20px 14px;
+    }
+
+    .answer-header {
+        gap: 8px;
+    }
+
+    .answer-title-group {
+        gap: 8px;
+    }
+
+    .answer h2 {
+        font-size: 13px;
+    }
+
+    .copy-label {
+        font-size: 10px;
+    }
+}
+
+/* Accessibility: respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

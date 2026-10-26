@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1028">
+
+    <title>Ask Gemini | AI Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-effects">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <main class="page-wrapper">
+
+        <div class="container">
+
+            <!-- Header -->
+            <header class="app-header">
+
+                <div class="logo-icon">✦</div>
+
+                <div class="header-text">
+                    <span class="eyebrow">YOUR PERSONAL AI ASSISTANT</span>
+
+                    <h1>
+                        Ask <span class="gradient-text">Gemini</span>
+                        <span class="emoji">🤖</span>
+                    </h1>
+
+                    <p class="subtitle">
+                        Curious mind? Let's find your answers.
+                    </p>
+                </div>
+
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    AI Assistant
+                </div>
+
+            </header>
+
+            <div class="section-divider"></div>
+            <section class="question-section">
+
+                <label for="question" class="field-label">
+                    WHAT'S ON YOUR MIND?
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">✧</span>
+
+                    <input
+                        type="text"
+                        id="question"
+                        placeholder="Ask me anything..."
+                        autocomplete="off"
+                    >
+
+                    <span class="input-shortcut">↵</span>
+
+                </div>
+
+                <p class="input-hint">
+                    <span>✦</span>
+                    Ask a question, explore an idea, or learn something new.
+                </p>
+
+                <button type="button" id="submitBtn" class="submit-btn">
+
+                    <span class="btn-text">Generate Answer</span>
+
+                    <span class="btn-loader"></span>
+
+                    <span class="btn-arrow">↗</span>
+
+                </button>
+
+            </section>
+
+            <section class="answer">
+
+                <div class="answer-header">
+
+                    <div class="answer-title-group">
+
+                        <div class="answer-icon">✧</div>
+
+                        <div>
+                            <span class="answer-overline">GEMINI RESPONSE</span>
+                            <h2>Here's your answer</h2>
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="copyAnswerBtn"
+                        class="copy-btn"
+                        title="Copy answer"
+                    >
+                        <span>▢</span>
+                        <span class="copy-label">Copy</span>
+                    </button>
+
+                </div>
+
+                <div class="answer-content">
+
+                    <div class="answer-accent"></div>
+
+                    <p id="answer" aria-live="polite">
+                        Your answer will appear here. ✨
+                    </p>
+
+                </div>
+
+                <div class="answer-footer">
+                    <span class="footer-sparkle">✦</span>
+                    AI-generated responses may need verification.
+                </div>
+
+            </section>
+
+            <footer class="app-footer">
+                <span>Designed with <span class="heart">♥</span></span>
+                <span class="footer-separator">•</span>
+                <span>Powered by Gemini AI</span>
+            </footer>
+
+        </div>
+
+    </main>
+    <script src="script.js"></script>
+
+</body>
+</html>
